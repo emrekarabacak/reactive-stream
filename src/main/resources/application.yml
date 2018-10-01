@@ -1,8 +1,24 @@
-spring.cloud.stream.bindings.input.destination=dest1
-spring.cloud.stream.bindings.input.binder=rabbit1
-
-spring.cloud.stream.bindings.output.destination=dest2
-spring.cloud.stream.bindings.output.binder=rabbit1
-
-spring.cloud.stream.binders.rabbit1.type=rabbit
-spring.cloud.stream.binders.rabbit1.environment.spring.rabbitmq.host=localhost
+spring:
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: thing1
+          binder: rabbit1
+        output:
+          destination: thing2
+          binder: rabbit1
+        greetings-in:
+          destination: greeting
+          binder: rabbit1
+        greetings-out:
+          destination: greeting
+          binder: rabbit1
+      binders:
+        rabbit1:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: 127.0.0.1
+                port: 5672

@@ -1,14 +1,22 @@
 package com.emre.reactivestream.processor;
 
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.cloud.stream.annotation.EnableBinding;
+import org.springframework.cloud.stream.annotation.Input;
+import org.springframework.cloud.stream.annotation.Output;
+import org.springframework.cloud.stream.annotation.StreamListener;
+import org.springframework.cloud.stream.messaging.Processor;
+import reactor.core.publisher.Flux;
 
-import javax.annotation.processing.Processor;
 
 @EnableBinding(Processor.class)
-@EnableAutoConfiguration
 public class UppercaseTransformer {
 
-    
+    @StreamListener
+    @Output(Processor.OUTPUT)
+    public Flux<String> receive(@Input(Processor.INPUT) Flux<String> input) {
+        return input.doOnEach(System.out::println)
+                .map(String::toUpperCase);
+
+    }
 
 }
