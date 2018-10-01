@@ -1,0 +1,8 @@
+spring.cloud.stream.bindings.input.destination=dest1
+spring.cloud.stream.bindings.input.binder=rabbit1
+
+spring.cloud.stream.bindings.output.destination=dest2
+spring.cloud.stream.bindings.output.binder=rabbit1
+
+spring.cloud.stream.binders.rabbit1.type=rabbit
+spring.cloud.stream.binders.rabbit1.environment.spring.rabbitmq.host=localhost
